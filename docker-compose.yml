@@ -1,10 +1,12 @@
 version: '2'
 services:
   postgres:
+    restart: always
     image: postgres
     ports:
       - "5432:5432"
   app:
+    restart: always
     build: .
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
