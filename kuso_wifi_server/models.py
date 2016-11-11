@@ -26,3 +26,7 @@ class KusoWifi(models.Model):
 
     def __str__(self):
         return self.comment
+
+    @staticmethod
+    def get_one_day(year, month, day):
+        return KusoWifi.objects.filter(date__year=year, date__month=month, date__day=day)

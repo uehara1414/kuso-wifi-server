@@ -5,7 +5,6 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from django.views import generic
 from django.views.decorators.csrf import csrf_exempt
-from django.utils.decorators import method_decorator
 
 from .models import KusoWifi
 
@@ -34,7 +33,7 @@ def ajax_post(request):
             return JsonResponse({"message": "comment param is missing. If the user comment is empty, set an empty string"})
 
         try:
-            KusoWifi.create_new(uid, date, message) # YYYY/MM/DD HH24:MI:SS
+            KusoWifi.create_new(uid, date, message)
         except Exception as e:
             return JsonResponse({"message": "Validation Error: " + str(e)})
 
@@ -50,3 +49,13 @@ class ListView(generic.ListView):
 
     def get_queryset(self):
         return KusoWifi.objects.order_by('-date')
+
+
+def one_day_view(request, year, month, day):
+    wifis = KusoWifi.get_one_day(year, month, day)
+    hour_list = []
+    for hour in range(24):
+        cnt = len(wifis.filter(date__hour=hour))
+        one = {"hour": hour, "cnt": cnt}
+        hour_list.append(one)
+    return render(request, "kuso_wifi_server/one_day_kuso.html", {"kusowifi_list": wifis, "hour_list": hour_list})
