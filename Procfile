@@ -1,1 +1,1 @@
-web: gunicorn sharetext.wsgi --log-file -
+web: gunicorn kuso-wifi-server.wsgi --log-file -
