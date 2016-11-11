@@ -1,1 +1,1 @@
-web: gunicorn kuso-wifi-server.wsgi --log-file -
+web: gunicorn kusowifi.wsgi --log-file -
