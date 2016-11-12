@@ -30,3 +30,13 @@ class KusoWifi(models.Model):
     @staticmethod
     def get_one_day(year, month, day):
         return KusoWifi.objects.filter(date__year=year, date__month=month, date__day=day)
+
+    @staticmethod
+    def count_kuso_wifi():
+        ret = []
+        date_set = KusoWifi.objects.dates('date', 'day')
+        for date in date_set:
+            count = len(KusoWifi.objects.filter(date__year=date.year, date__month=date.month, date__day=date.day))
+            dct = {'date': date, 'count': count}
+            ret.append(dct)
+        return ret

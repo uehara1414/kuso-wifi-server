@@ -1,10 +1,41 @@
 <html>
-<head>
-    <title>hello</title>
-</head>
-<body>
-<p>
-    Hello world
-</p>
-</body>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["calendar"]});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var dataTable = new google.visualization.DataTable();
+        dataTable.addColumn({ type: 'date', id: 'Date' });
+        dataTable.addColumn({ type: 'number', id: 'Won/Loss' });
+        dataTable.addRows([
+        {% for obj in dates %}
+            [ new Date({{ obj.date.year }}, {{ obj.date.month }}, {{ obj.date.day }}), {{ obj.count }} ],
+        {% endfor %}
+        ]);
+
+        var chart = new google.visualization.Calendar(document.getElementById('calendar_basic'));
+
+        var options = {
+          title: "Kuso Wifi Calendar",
+        };
+
+        chart.draw(dataTable, options);
+          google.visualization.events.addListener(chart, 'select', function() {
+            var date = new Date(chart.getSelection()[0].date);
+            var year = date.getFullYear();
+            var month = date.getMonth();
+            date = date.getDate();
+
+            // jinja2 でURL生成 -> js で置き換え. 他にうまい方法が思いつかなかった.
+            location.href="{% url "kuso_wifi_server:one_day_kuso" 12345 23456 34567 %}".replace("12345", year).replace("23456", month).replace("34567", date);
+        });
+
+      }
+    </script>
+  </head>
+  <body>
+    <div id="calendar_basic" style="width: 1000px; height: 350px;"></div>
+  </body>
 </html>

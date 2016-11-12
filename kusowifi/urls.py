@@ -17,6 +17,6 @@ from django.conf.urls import url, include
 from django.contrib import admin
 
 urlpatterns = [
-    url(r'^', include('kuso_wifi_server.urls')),
+    url(r'^', include('kuso_wifi_server.urls', namespace='kuso_wifi_server')),
     url(r'^admin/', admin.site.urls),
 ]

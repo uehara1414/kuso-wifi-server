@@ -51,6 +51,11 @@ class ListView(generic.ListView):
         return KusoWifi.objects.order_by('-date')
 
 
+def index(request):
+    kuso_wifi_calendar = KusoWifi.count_kuso_wifi()
+    return render(request, "kuso_wifi_server/index.html", {"dates": kuso_wifi_calendar})
+
+
 def one_day_view(request, year, month, day):
     wifis = KusoWifi.get_one_day(year, month, day)
     hour_list = []
