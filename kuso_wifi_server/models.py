@@ -10,18 +10,20 @@ class Client(models.Model):
 
 class KusoWifi(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
+    ssid = models.CharField(max_length=64, default="unknown")
     date = models.DateTimeField()
+    ping_ms = models.IntegerField(default=0)
     comment = models.TextField(max_length=256)
 
     @staticmethod
-    def create_new(uid, date, comment):
+    def create_new(uid, ssid, date, ping_ms, comment):
         try:
             client = Client.objects.get(uid=uid)
         except Client.DoesNotExist:
             client = Client(uid=uid)
             client.save()
 
-        wifi = KusoWifi(client=client, date=date, comment=comment)
+        wifi = KusoWifi(client=client, ssid=ssid, date=date, ping_ms=ping_ms, comment=comment)
         wifi.save()
 
     def __str__(self):

@@ -33,7 +33,21 @@ def ajax_post(request):
             return JsonResponse({"message": "comment param is missing. If the user comment is empty, set an empty string"})
 
         try:
-            KusoWifi.create_new(uid, date, message)
+            ssid = data['ssid']
+        except KeyError:
+            return JsonResponse({"message": "ssid param is missing."})
+        except Exception as e:
+            return JsonResponse({"message": str(e)})
+
+        try:
+            ping_ms = data['ping']
+        except KeyError:
+            return JsonResponse({"message": "ping param is missing."})
+        except Exception as e:
+            return JsonResponse({"message": str(e)})
+
+        try:
+            KusoWifi.create_new(uid, ssid, date, ping_ms, message)
         except Exception as e:
             return JsonResponse({"message": "Validation Error: " + str(e)})
 
