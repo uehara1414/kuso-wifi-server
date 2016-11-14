@@ -33,6 +33,15 @@ class KusoWifi(models.Model):
     def get_one_day(year, month, day):
         return KusoWifi.objects.filter(date__year=year, date__month=month, date__day=day)
 
+
+    @staticmethod
+    def get_ssid_set():
+        ret = set()
+        for x in KusoWifi.objects.values_list("ssid"):
+            ret.add(x[0])
+        return ret
+
+
     @staticmethod
     def count_kuso_wifi():
         ret = []
