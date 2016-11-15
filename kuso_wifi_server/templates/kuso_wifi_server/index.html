@@ -1,5 +1,8 @@
-<html>
-  <head>
+{% extends "kuso_wifi_server/base.html" %}
+
+{% block title %} Kuso Wifi Server {% endblock %}
+
+{% block header-contents %}
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
       google.charts.load("current", {packages:["calendar"]});
@@ -34,8 +37,51 @@
 
       }
     </script>
-  </head>
-  <body>
-    <div id="calendar_basic" style="width: 1000px; height: 350px;"></div>
-  </body>
-</html>
+{% endblock %}
+{% block body %}
+
+    <div id="main" style="margin: 0 auto; width: 80%;">
+
+        <div id="calendar_basic" style="margin: 0 auto;"></div>
+
+        <div class="panel panel-default">
+
+            <!-- Default panel contents -->
+            <div class="panel-heading">Kuso Wifi Timeline</div>
+
+            <!-- Table -->
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            ssid
+                        </th>
+                        <th>
+                            Network Speed
+                        </th>
+                        <th>
+                            comment
+                        </th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>
+                            kuso-wifi
+                        </td>
+                        <td>
+                            ...ms
+                        </td>
+                        <td>
+                            こめんと
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+{% endblock %}
