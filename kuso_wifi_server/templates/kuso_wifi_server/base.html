@@ -30,15 +30,11 @@
 <div class="row">
 
     <div class="col-sm-1">
+        {% for i in filter_ssid %}
             <div class="checkbox">
-                <label><input type="checkbox" value="" name="free-wifi">free-wifi</label>
+                <label><input type="checkbox" {% if i.checked %} checked {% endif %}>{{ i.name }}</label>
             </div>
-            <div class="checkbox">
-                <label><input type="checkbox" value="" name="dummy-wifi">dummy-wifi</label>
-            </div>
-            <div class="checkbox disabled">
-                <label><input type="checkbox" value="" name="fun-wifi">fun-wifi</label>
-            </div>
+        {% endfor %}
     </div>
     <script type="text/javascript">
         $(".checkbox").change(function(){
