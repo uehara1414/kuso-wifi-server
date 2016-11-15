@@ -56,6 +56,15 @@ def ajax_post(request):
     else:
         return JsonResponse({"message": "POST please."})
 
+@csrf_exempt
+def post_filter_settings(request):
+    data = json.loads(request.body.decode("utf-8"))
+    filter_ssid_set = set()
+    for ssid in data["ssid"]:
+        filter_ssid_set.add(ssid)
+    request.session['filter_ssid'] = list(filter_ssid_set)
+    return JsonResponse({"message": "ok"})
+
 
 class ListView(generic.ListView):
     model = KusoWifi
