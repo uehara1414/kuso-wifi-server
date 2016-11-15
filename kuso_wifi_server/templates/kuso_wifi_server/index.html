@@ -66,17 +66,23 @@
                 </thead>
 
                 <tbody>
+                {% for wifi in timeline %}
                     <tr>
                         <td>
-                            kuso-wifi
+                            {{ wifi.ssid }}
                         </td>
                         <td>
-                            ...ms
+                            {% if wifi.ping_ms == 0 %}
+                                不通
+                            {% else %}
+                                {{ wifi.ping_ms }} ms
+                            {% endif %}
                         </td>
                         <td>
-                            こめんと
+                            {{ wifi.comment }}
                         </td>
                     </tr>
+                {% endfor %}
                 </tbody>
             </table>
 
