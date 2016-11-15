@@ -76,7 +76,17 @@ class ListView(generic.ListView):
 
 def index(request):
     kuso_wifi_calendar = KusoWifi.count_kuso_wifi()
-    return render(request, "kuso_wifi_server/index.html", {"dates": kuso_wifi_calendar, "timeline": KusoWifi.objects.order_by('-date')[:30]})
+    timeline = KusoWifi.objects.filter(ssid__in=request.session.get('filter_ssid', [])).order_by('-date')[:30]
+    return render(request, "kuso_wifi_server/index.html", {"dates": kuso_wifi_calendar, "timeline": timeline})
+
+
+def ssid_ajax(request):
+    all_wifi_set = KusoWifi.get_ssid_set()
+    filtered_wifi_list = request.session.get('filter_ssid', [])
+    wifi_list = []
+    for wifi in all_wifi_set:
+        wifi_list.append({wifi: wifi in filtered_wifi_list})
+    return JsonResponse(wifi_list)
 
 
 def one_day_view(request, year, month, day):
