@@ -66,20 +66,20 @@
                 </thead>
 
                 <tbody>
-                {% for wifi in timeline %}
+                {% for wifi_report in timeline %}
                     <tr>
                         <td>
-                            {{ wifi.ssid }}
+                            {{ wifi_report.wifi.ssid }}
                         </td>
                         <td>
-                            {% if wifi.ping_ms == 0 %}
+                            {% if wifi_report.ping_ms == 0 %}
                                 不通
                             {% else %}
-                                {{ wifi.ping_ms }} ms
+                                {{ wifi_report.ping_ms }} ms
                             {% endif %}
                         </td>
                         <td>
-                            {{ wifi.comment }}
+                            {{ wifi_report.comment }}
                         </td>
                     </tr>
                 {% endfor %}

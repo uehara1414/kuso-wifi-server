@@ -23,9 +23,9 @@ class Wifi(models.Model):
     @staticmethod
     def get_or_create_new(ssid):
         try:
-            wifi = Client.objects.get(ssid=ssid)
+            wifi = Wifi.objects.get(ssid=ssid)
         except Wifi.DoesNotExist:
-            wifi = Client(ssid=ssid)
+            wifi = Wifi(ssid=ssid)
             wifi.save()
         return wifi
 
@@ -42,10 +42,10 @@ class WifiReport(models.Model):
 
     @staticmethod
     def create_new(uid, ssid, date, ping_ms, comment):
-        client = Client.get_or_create_new(uid)
+        client = Client.get_or_create_new(uid=uid)
         wifi = Wifi.get_or_create_new(ssid=ssid)
-        wifi = WifiReport(client=client, wifi=wifi, date=date, ping_ms=ping_ms, comment=comment)
-        wifi.save()
+        wifi_report = WifiReport(client=client, wifi=wifi, date=date, ping_ms=ping_ms, comment=comment)
+        wifi_report.save()
 
     def __str__(self):
         return str(self.date) + str(self.wifi) + self.comment
