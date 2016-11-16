@@ -69,7 +69,7 @@ def index(request):
     filter_wifi = Wifi.objects.filter(ssid__in=request.session.get('filter_wifi', []))
     kuso_wifi_calendar = WifiReport.count_daily_wifi_report(filter_wifi)
     timeline = WifiReport.objects.filter(wifi__in=filter_wifi).order_by('-date')[:30]
-    context = {"dates": kuso_wifi_calendar, "timeline": timeline, "filter_ssid": get_ssid_context(request)}
+    context = {"dates": kuso_wifi_calendar, "wifi_report_list": timeline, "filter_ssid": get_ssid_context(request)}
     return render(request, "kuso_wifi_server/index.html", context)
 
 
@@ -99,4 +99,4 @@ def one_day_report(request, year, month, day):
         cnt = len(wifi_report_list.filter(date__hour=hour))
         one = {"hour": hour, "cnt": cnt}
         hour_list.append(one)
-    return render(request, "kuso_wifi_server/one_day_kuso.html", {"kusowifi_list": wifi_report_list, "hour_list": hour_list, "filter_ssid": get_ssid_context(request)})
+    return render(request, "kuso_wifi_server/one_day_kuso.html", {"wifi_report_list": wifi_report_list, "hour_list": hour_list, "filter_ssid": get_ssid_context(request)})
