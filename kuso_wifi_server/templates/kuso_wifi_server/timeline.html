@@ -1,43 +1,39 @@
 <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading">Kuso Wifi Timeline</div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>
+                ssid
+            </th>
+            <th>
+                Network Speed
+            </th>
+            <th>
+                comment
+            </th>
+        </tr>
+        </thead>
 
-            <!-- Default panel contents -->
-            <div class="panel-heading">Kuso Wifi Timeline</div>
-
-            <!-- Table -->
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>
-                            ssid
-                        </th>
-                        <th>
-                            Network Speed
-                        </th>
-                        <th>
-                            comment
-                        </th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                {% for wifi_report in timeline %}
-                    <tr>
-                        <td>
-                            {{ wifi_report.wifi.ssid }}
-                        </td>
-                        <td>
-                            {% if wifi_report.ping_ms == 0 %}
-                                不通
-                            {% else %}
-                                {{ wifi_report.ping_ms }} ms
-                            {% endif %}
-                        </td>
-                        <td>
-                            {{ wifi_report.comment }}
-                        </td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-
-        </div>
+        <tbody>
+        {% for wifi_report in timeline %}
+            <tr>
+                <td>
+                    {{ wifi_report.wifi.ssid }}
+                </td>
+                <td>
+                    {% if wifi_report.ping_ms == 0 %}
+                        不通
+                    {% else %}
+                        {{ wifi_report.ping_ms }} ms
+                    {% endif %}
+                </td>
+                <td>
+                    {{ wifi_report.comment }}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
