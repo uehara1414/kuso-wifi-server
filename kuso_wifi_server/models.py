@@ -33,6 +33,10 @@ class Wifi(models.Model):
         return self.ssid
 
 
+    def __lt__(self, other):
+        return self.ssid < other.ssid
+
+
 class WifiReport(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
     wifi = models.ForeignKey(Wifi, on_delete=models.CASCADE)
