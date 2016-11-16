@@ -25,32 +25,10 @@
 <div class="row">
 
     <div class="col-sm-2">
-        {% for i in filter_ssid %}
-            <div class="checkbox">
-                <label><input class="wifi-checkbox" name="{{ i.name }}" type="checkbox" {% if i.checked %} checked {% endif %}>{{ i.name }}</label>
-            </div>
-        {% endfor %}
+
+        {% include "kuso_wifi_server/wifi_filter.html" %}
+
     </div>
-    <script type="text/javascript">
-        $(".checkbox").change(function(){
-            var ssid_list = [];
-            $(".wifi-checkbox").each(function(){
-                if ($(this).prop("checked")) {
-                    ssid_list.push($(this).attr("name"));
-                }
-            });
-           $.ajax("{% url "kuso_wifi_server:filter-ajax" %}", {
-               type: "POST",
-               dataType: "json",
-               data: JSON.stringify({
-                   ssid: ssid_list
-               }),
-               success: function(){
-                   location.reload();
-               }
-           });
-        });
-    </script>
 
     <div class="col-sm-10">
         {% block body %}{% endblock %}
