@@ -5,13 +5,16 @@
         <thead>
         <tr>
             <th>
-                ssid
+                Wifi
+            </th>
+            <th>
+                日付
             </th>
             <th>
                 Network Speed
             </th>
             <th>
-                comment
+                コメント
             </th>
         </tr>
         </thead>
@@ -21,6 +24,9 @@
             <tr {% if wifi_report.ping_ms == 0 %}class="alert-danger"{% elif wifi_report.ping_ms > 50 %}class="alert-warning"{% endif %}>
                 <td>
                     {{ wifi_report.wifi.ssid }}
+                </td>
+                <td>
+                    {{ wifi_report.date.month }}/{{ wifi_report.date.day }} {{ wifi_report.date.hour }}:{{ wifi_report.date.minute }}
                 </td>
                 <td>
                     {% if wifi_report.ping_ms == 0 %}
