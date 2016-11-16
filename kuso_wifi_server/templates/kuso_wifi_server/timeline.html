@@ -18,7 +18,7 @@
 
         <tbody>
         {% for wifi_report in wifi_report_list %}
-            <tr>
+            <tr {% if wifi_report.ping_ms == 0 %}class="alert-danger"{% elif wifi_report.ping_ms > 50 %}class="alert-warning"{% endif %}>
                 <td>
                     {{ wifi_report.wifi.ssid }}
                 </td>
