@@ -62,6 +62,8 @@ class WifiReport(models.Model):
         date_set = WifiReport.objects.dates('date', 'day')
         for date in date_set:
             count = len(WifiReport.objects.filter(date__year=date.year, date__month=date.month, date__day=date.day, wifi__in=filter_wifi))
+            if count == 0:
+                continue
             dct = {'date': date, 'count': count}
             ret.append(dct)
         return ret
