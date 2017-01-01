@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{% static 'kuso_wifi_server/vendor/bootstrap-3.3.7-dist/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'kuso_wifi_server/vendor/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css' %}">
+    <script src="{% static 'kuso_wifi_server/vendor/jquery-3.1.1.min.js' %}"></script>
+    <script defer src="{% static 'kuso_wifi_server/vendor/bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
+    <title>{% block title %}{% endblock %}</title>
+    {% block header-contents %}{% endblock %}
+</head>
+<body>
+<header>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="{% url "kuso_wifi_server:index" %}">Kuso Wifi Hub</a>
+        </div>
+        
+  </div><!-- /.container-fluid -->
+</nav>
+</header>
+<div class="row">
+
+    <div class="col-sm-2">
+
+        {% include "kuso_wifi_server/wifi_filter.html" %}
+
+    </div>
+
+    <div class="col-sm-10">
+        {% block body %}{% endblock %}
+    </div>
+
+</div>
+
+</body>
+</html>
