@@ -91,3 +91,6 @@ ENV/
 staticfiles/
 
 .idea/
+
+static/
+
