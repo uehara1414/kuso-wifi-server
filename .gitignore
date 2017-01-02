@@ -88,4 +88,9 @@ ENV/
 # Rope project settings
 .ropeproject
 
+staticfiles/
+
 .idea/
+
+static/
+
