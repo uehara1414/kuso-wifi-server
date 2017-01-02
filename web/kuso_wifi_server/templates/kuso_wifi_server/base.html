@@ -22,19 +22,8 @@
   </div><!-- /.container-fluid -->
 </nav>
 </header>
-<div class="row">
 
-    <div class="col-sm-2">
-
-        {% include "kuso_wifi_server/wifi_filter.html" %}
-
-    </div>
-
-    <div class="col-sm-10">
-        {% block body %}{% endblock %}
-    </div>
-
-</div>
+{% block body %}{% endblock %}
 
 <footer class="footer">
   <div class="container">
