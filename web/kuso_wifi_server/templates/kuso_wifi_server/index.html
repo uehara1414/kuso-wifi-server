@@ -32,7 +32,7 @@
             date = date.getDate();
 
             // jinja2 でURL生成 -> js で置き換え. 他にうまい方法が思いつかなかった.
-            location.href="{% url "kuso_wifi_server:one_day_kuso" 12345 23456 34567 %}".replace("12345", year).replace("23456", month).replace("34567", date);
+            location.href="{% url "kuso_wifi_server:one_day_kuso" 12345 23456 34567 %}".replace("12345", year).replace("23456", month + 1).replace("34567", date);
         });
 
       }
