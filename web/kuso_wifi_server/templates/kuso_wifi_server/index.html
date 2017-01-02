@@ -14,7 +14,7 @@
         dataTable.addColumn({ type: 'number', id: 'Won/Loss' });
         dataTable.addRows([
         {% for obj in dates %}
-            [ new Date({{ obj.date.year }}, {{ obj.date.month }}, {{ obj.date.day }}), {{ obj.count }} ],
+            [ new Date({{ obj.date.year }}, {{ obj.date.month }} - 1, {{ obj.date.day }}), {{ obj.count }} ],
         {% endfor %}
         ]);
 
