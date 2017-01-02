@@ -73,6 +73,10 @@ def index(request):
     return render(request, "kuso_wifi_server/index.html", context)
 
 
+def description(request):
+    return render(request, "kuso_wifi_server/description.html")
+
+
 def ssid_ajax(request):
     all_wifi_set = Wifi.objects.all()
     filtered_wifi_list = request.session.get('filter_wifi', [])
