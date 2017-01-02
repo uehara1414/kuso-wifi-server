@@ -41,17 +41,16 @@
 {% block body %}
     <div class="row">
         <div class="col-sm-2">
-
             {% include "kuso_wifi_server/wifi_filter.html" %}
-
         </div>
 
         <div class="col-sm-10">
-            <div id="main" style="margin: 0 auto; width: 80%;">
-                <div id="calendar_basic" style="margin: 0 auto; width: 100%;" ></div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="calendar_basic" style="width: 100%;"></div>
                     {% include "kuso_wifi_server/timeline.html" %}
+                </div>
             </div>
         </div>
-
     </div>
 {% endblock %}
