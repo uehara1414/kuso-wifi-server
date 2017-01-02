@@ -1,3 +1,5 @@
+import datetime
+
 from django.db import models
 
 
@@ -59,7 +61,8 @@ class WifiReport(models.Model):
         if filter_wifi is None:
             wifi = Wifi.objects.all()
         ret = []
-        date_set = WifiReport.objects.dates('date', 'day')
+        now = datetime.datetime.now()
+        date_set = WifiReport.objects.dates('date', 'day').filter(date__year=now.year)
         for date in date_set:
             count = len(WifiReport.objects.filter(date__year=date.year, date__month=date.month, date__day=date.day, wifi__in=filter_wifi))
             if count == 0:
