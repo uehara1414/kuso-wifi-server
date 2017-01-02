@@ -88,7 +88,9 @@ def ssid_ajax(request):
 
 def get_ssid_context(request):
     all_wifi_set = Wifi.objects.all()
-    filtered_wifi_list = Wifi.objects.filter(ssid__in=request.session.get('filter_wifi', []))
+    if "filter_wifi" not in request.session:
+        request.session["filter_wifi"] = [wifi.ssid for wifi in all_wifi_set]
+    filtered_wifi_list = Wifi.objects.filter(ssid__in=request.session.get('filter_wifi'))
     wifi_list = []
     for wifi in sorted(all_wifi_set):
         wifi_list.append({"name": wifi.ssid, "checked": wifi in filtered_wifi_list})
