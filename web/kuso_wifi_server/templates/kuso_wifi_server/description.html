@@ -1,0 +1,66 @@
+{% extends "kuso_wifi_server/base.html" %}
+
+{% block title %} このサイトについて {% endblock %}
+
+{% block header-contents %}
+{% endblock %}
+
+{% block body %}
+
+    <div class="row" id="description-box">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="text-center">
+                <h1>このサイトについて</h1>
+            </div>
+
+            <div class="col-md-4 col-md-offset-4">
+                <hr />
+            </div>
+
+            <div class="clearfix"></div>
+
+            <h2>Kuso Wifi Hub とは</h2>
+            <p>
+                以下のツイートから生まれた、某大学のWifiが繋がらないときに腹いせに押すボタン「kuso-wifi-button」のデータ集積所です。
+            </p>
+                <blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">学内のネットに繋がらなかったときに押すクソネットボタンが欲しい</p>&mdash; uehara (@NofaceYa) <a href="https://twitter.com/NofaceYa/status/796206371137912833">2016年11月9日</a></blockquote>
+                <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+                <p>
+                「kuso-wifi-button」が押されたときのWifiのssid, ネットワークスピード, コメントを集め、そのデータをグラフ化します。
+                </p>
+            <p>
+                作者がちょうどDjangoの勉強をしていたので、練習として作成しました。
+            </p>
+            <p>
+                このサイトのリポシトリは<a href="https://github.com/uehara1414/kuso-wifi-server" target="_blank">こちら</a>
+            </p>
+
+            <div class="col-md-4 col-md-offset-4"></div>
+
+            <h2>kuso-wifi-button を入手したい</h2>
+            <p>
+                <a href="https://github.com/uehara1414/kuso-wifi-button/releases" target="_blank">こちら</a>からどうぞ。
+            </p>
+            <p>
+                Electron製で、Windows, OSX, Linux に対応しています。
+            </p>
+
+            <div class="col-md-4 col-md-offset-4"></div>
+
+            <h2>お問い合わせ</h2>
+            <p>
+                感想、要望、バグ報告やssidなどのデータの削除などは
+                <a href="https://twitter.com/NofaceYa" target="_blank">Twitter</a>、
+                <a href="https://github.com/uehara1414" target="_blank">GitHub</a>
+                または<a href="https://goo.gl/forms/kQ6J7i83csm2Nmlz1" target="_blank">Google Form</a>
+                などからお願いします。
+            </p>
+            <p>
+                対応は Twitter, Github, Google Form の順で早いと思います。
+            </p>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+
+{% endblock %}

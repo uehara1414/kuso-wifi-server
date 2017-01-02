@@ -9,32 +9,22 @@
     <title>{% block title %}{% endblock %}</title>
     {% block header-contents %}{% endblock %}
 </head>
+
 <body>
 <header>
 <nav class="navbar navbar-default">
     <div class="container-fluid">
-
-        <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <a class="navbar-brand" href="{% url "kuso_wifi_server:index" %}">Kuso Wifi Hub</a>
         </div>
-        
-  </div><!-- /.container-fluid -->
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="{% url "kuso_wifi_server:description" %}">このサイトについて</a></li>
+        </ul>
+    </div>
 </nav>
 </header>
-<div class="row">
 
-    <div class="col-sm-2">
-
-        {% include "kuso_wifi_server/wifi_filter.html" %}
-
-    </div>
-
-    <div class="col-sm-10">
-        {% block body %}{% endblock %}
-    </div>
-
-</div>
+{% block body %}{% endblock %}
 
 <footer class="footer">
   <div class="container">

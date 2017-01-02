@@ -30,8 +30,17 @@
 {% endblock %}
 
 {% block body %}
-<div id="chart_div" style="width: 100%; height: 500px;"></div>
+    <div class="row">
+        <div class="col-sm-2">
 
-{% include "kuso_wifi_server/timeline.html" %}
+            {% include "kuso_wifi_server/wifi_filter.html" %}
+
+        </div>
+        <div class="col-sm-10">
+            <div id="chart_div" style="width: 100%; height: 500px;"></div>
+            {% include "kuso_wifi_server/timeline.html" %}
+        </div>
+    </div>
+
 
 {% endblock %}
