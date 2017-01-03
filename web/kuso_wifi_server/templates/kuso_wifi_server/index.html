@@ -14,7 +14,7 @@
         dataTable.addColumn({ type: 'number', id: 'Won/Loss' });
         dataTable.addRows([
         {% for obj in dates %}
-            [ new Date({{ obj.date.year }}, {{ obj.date.month }}, {{ obj.date.day }}), {{ obj.count }} ],
+            [ new Date({{ obj.date.year }}, {{ obj.date.month }} - 1, {{ obj.date.day }}), {{ obj.count }} ],
         {% endfor %}
         ]);
 
@@ -32,20 +32,25 @@
             date = date.getDate();
 
             // jinja2 でURL生成 -> js で置き換え. 他にうまい方法が思いつかなかった.
-            location.href="{% url "kuso_wifi_server:one_day_kuso" 12345 23456 34567 %}".replace("12345", year).replace("23456", month).replace("34567", date);
+            location.href="{% url "kuso_wifi_server:one_day_kuso" 12345 23456 34567 %}".replace("12345", year).replace("23456", month + 1).replace("34567", date);
         });
 
       }
     </script>
 {% endblock %}
 {% block body %}
+    <div class="row">
+        <div class="col-sm-2">
+            {% include "kuso_wifi_server/wifi_filter.html" %}
+        </div>
 
-    <div id="main" style="margin: 0 auto; width: 80%;">
-
-        <div id="calendar_basic" style="margin: 0 auto; width: 100%;" ></div>
-
-        {% include "kuso_wifi_server/timeline.html" %}
-
+        <div class="col-sm-10">
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="calendar_basic" style="width: 100%;"></div>
+                    {% include "kuso_wifi_server/timeline.html" %}
+                </div>
+            </div>
+        </div>
     </div>
-
 {% endblock %}

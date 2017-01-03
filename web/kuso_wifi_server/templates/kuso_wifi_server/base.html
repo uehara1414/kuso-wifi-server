@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'kuso_wifi_server/vendor/bootstrap-3.3.7-dist/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'kuso_wifi_server/vendor/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css' %}">
     <script src="{% static 'kuso_wifi_server/vendor/jquery-3.1.1.min.js' %}"></script>
@@ -9,32 +10,38 @@
     <title>{% block title %}{% endblock %}</title>
     {% block header-contents %}{% endblock %}
 </head>
+
 <body>
 <header>
 <nav class="navbar navbar-default">
     <div class="container-fluid">
-
-        <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <a class="navbar-brand" href="{% url "kuso_wifi_server:index" %}">Kuso Wifi Hub</a>
         </div>
-        
-  </div><!-- /.container-fluid -->
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="{% url "kuso_wifi_server:description" %}">このサイトについて</a></li>
+        </ul>
+    </div>
 </nav>
 </header>
-<div class="row">
 
-    <div class="col-sm-2">
+{% block body %}{% endblock %}
 
-        {% include "kuso_wifi_server/wifi_filter.html" %}
-
-    </div>
-
-    <div class="col-sm-10">
-        {% block body %}{% endblock %}
-    </div>
-
-</div>
+<footer class="footer">
+  <div class="container">
+      <div class="row">
+          <div class="col-sm-2"></div>
+          <div class="col-lg-10">
+              <p class="text-muted">
+                  Kuso-Wifi-Hub Copyright © 2016 uehara1414
+                  <a href="https://twitter.com/NofaceYa" target="_blank"><img src="{% static "kuso_wifi_server/vendor/images/Twitter_Logo_White_On_Blue.png" %}" width="16px" height="16px"></a>
+                  <a href="https://github.com/uehara1414/kuso-wifi-server" target="_blank"><img src="{% static "kuso_wifi_server/vendor/images/GitHub-Mark-32px.png" %}" width="16px" height="16px"></a>
+                  <a href="https://goo.gl/forms/kQ6J7i83csm2Nmlz1" target="_blank">ご意見・要望など</a>
+              </p>
+          </div>
+      </div>
+  </div>
+</footer>
 
 </body>
 </html>
