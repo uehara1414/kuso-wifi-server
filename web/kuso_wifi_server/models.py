@@ -49,14 +49,16 @@ class WifiReport(models.Model):
     comment = models.TextField(max_length=256)
 
     @staticmethod
-    def create_new(uid: str, ssid: str, date:datetime, ping_ms: int, comment: str):
+    def create_new(uid: str, ssid: str, date:datetime, ping_ms: int, comment: str, do_tweet=True):
         client = Client.get_or_create_new(uid=uid)
         wifi = Wifi.get_or_create_new(ssid=ssid)
         wifi_report = WifiReport(client=client, wifi=wifi, date=date, ping_ms=ping_ms, comment=comment)
         wifi_report.save()
         def tweet():
             tweet_comment(wifi_report)
-        subprocess.threading.Thread(target=tweet).start()
+        if do_tweet:
+            subprocess.threading.Thread(target=tweet).start()
+        return wifi_report
 
 
     def __str__(self):
