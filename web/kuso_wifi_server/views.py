@@ -47,7 +47,7 @@ def ajax_post(request):
             return JsonResponse({"message": str(e)})
 
         try:
-            report = WifiReport.create_new(uid, ssid, date, ping_ms, message)
+            WifiReport.create_new(uid, ssid, date, ping_ms, message)
         except Exception as e:
             return JsonResponse({"message": "Validation Error: " + str(type(e))})
 
