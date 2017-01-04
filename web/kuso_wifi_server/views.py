@@ -6,7 +6,6 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
 from .models import Wifi, WifiReport
-from .twitter import tweet_comment
 
 
 @csrf_exempt
