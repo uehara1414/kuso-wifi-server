@@ -18,7 +18,7 @@ def create_tweet_content(report):
     content = "{}:{} に {} に対して以下の苦言が呈されました。\n" \
               "「{}」\n" \
               "ping: {}\n" \
-              "#kuso-wifi-button".format(report.date.hour, report.date.minute, report.wifi.ssid, report.comment, report.ping_ms)
+              "#KusoWifiButton".format(report.date.hour, report.date.minute, report.wifi.ssid, report.comment, report.ping_ms)
     if len(content) > TWEET_LENGTH_MAX:
         return ""
 

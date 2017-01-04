@@ -14,7 +14,7 @@ class TweetTest(TestCase):
             "{}:{} に test-wifi に対して以下の苦言が呈されました。\n"
             "「Hello Comment」\n"
             "ping: 100\n"
-            "#kuso-wifi-button".format(report_with_comment.date.hour, report_with_comment.date.minute))
+            "#KusoWifiButton".format(report_with_comment.date.hour, report_with_comment.date.minute))
 
     def test_create_tweet_comment_2(self):
         # Too long comment
