@@ -1,6 +1,8 @@
 import datetime
+import subprocess
 
 from django.db import models
+from .twitter import tweet_comment
 
 
 class Client(models.Model):
@@ -47,11 +49,15 @@ class WifiReport(models.Model):
     comment = models.TextField(max_length=256)
 
     @staticmethod
-    def create_new(uid, ssid, date, ping_ms, comment):
+    def create_new(uid: str, ssid: str, date:datetime, ping_ms: int, comment: str):
         client = Client.get_or_create_new(uid=uid)
         wifi = Wifi.get_or_create_new(ssid=ssid)
         wifi_report = WifiReport(client=client, wifi=wifi, date=date, ping_ms=ping_ms, comment=comment)
         wifi_report.save()
+        def tweet():
+            tweet_comment(wifi_report)
+        subprocess.threading.Thread(target=tweet).start()
+
 
     def __str__(self):
         return str(self.date) + str(self.wifi) + self.comment

@@ -6,6 +6,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
 from .models import Wifi, WifiReport
+from .twitter import tweet_comment
 
 
 @csrf_exempt
@@ -46,9 +47,9 @@ def ajax_post(request):
             return JsonResponse({"message": str(e)})
 
         try:
-            WifiReport.create_new(uid, ssid, date, ping_ms, message)
+            report = WifiReport.create_new(uid, ssid, date, ping_ms, message)
         except Exception as e:
-            return JsonResponse({"message": "Validation Error: " + str(e)})
+            return JsonResponse({"message": "Validation Error: " + str(type(e))})
 
         return JsonResponse({"message": "ok"})
 
